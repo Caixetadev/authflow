@@ -8,6 +8,10 @@ export const GlobalStyle = createGlobalStyle`
       box-sizing: border-box;
     }
 
+    html {
+      font-size: 62.5%;
+    }
+
     body {
       background-color: ${theme.colors.background};
     }
