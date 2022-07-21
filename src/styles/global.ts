@@ -13,6 +13,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body {
+      font-size: 1.6rem;
       color: #fff;
       font-family: "Poppins", sans-serif;
       background-color: ${theme.colors.background};
