@@ -5,7 +5,7 @@ import { GlobalStyle } from "../styles/global";
 import theme from "../styles/theme";
 
 import { Provider } from "react-redux";
-import { store } from "../app/store";
+import { store } from "../store";
 
 import "react-toastify/dist/ReactToastify.css";
 

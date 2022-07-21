@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import login from "./login";
+import login from "./modules/auth/auth.store";
 
 export type AppDispatch = typeof store.dispatch;
 
