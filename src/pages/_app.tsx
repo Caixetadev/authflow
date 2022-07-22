@@ -7,14 +7,21 @@ import theme from "../styles/theme";
 import { Provider } from "react-redux";
 import { store } from "../store";
 
-import "react-toastify/dist/ReactToastify.css";
+import { SessionProvider } from "next-auth/react";
 
-function MyApp({ Component, pageProps }: AppProps) {
+import "react-toastify/dist/ReactToastify.css";
+import { Shield } from "../components/Shield";
+
+function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
-        <GlobalStyle />
+        <SessionProvider session={session}>
+          <Shield>
+            <Component {...pageProps} />
+            <GlobalStyle />
+          </Shield>
+        </SessionProvider>
       </ThemeProvider>
     </Provider>
   );
