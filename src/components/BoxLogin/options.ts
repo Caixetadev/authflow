@@ -1,5 +1,5 @@
 import LogoGithub from "../../assets/logoGithub.svg";
-import LogoApple from "../../assets/logoApple.svg";
+import LogoLinkedin from "../../assets/logoLinkedin.svg";
 import LogoGoogle from "../../assets/logoGoogle.svg";
 
 import { signIn } from "next-auth/react";
@@ -8,16 +8,16 @@ export const options = [
   {
     image: LogoGoogle,
     alt: "Logo google",
-    signIn: () => null,
+    signIn: () => signIn("google"),
   },
   {
-    image: LogoApple,
+    image: LogoLinkedin,
     alt: "Icon apple",
-    signIn: () => null,
+    signIn: () => signIn("linkedin"),
   },
   {
     image: LogoGithub,
     alt: "Logo github",
-    signIn,
+    signIn: () => signIn("github"),
   },
 ];
