@@ -30,6 +30,5 @@ export default NextAuth({
       clientId: "77qjik4buq9wa9",
       clientSecret: "IUecsONjRtR9cOHQ",
     }),
-    // ...add more providers here
   ],
 });
