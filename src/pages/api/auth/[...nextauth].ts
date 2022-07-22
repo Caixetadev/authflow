@@ -31,4 +31,6 @@ export default NextAuth({
       clientSecret: "IUecsONjRtR9cOHQ",
     }),
   ],
+
+  secret: process.env.NEXT_PUBLIC_JWT,
 });
