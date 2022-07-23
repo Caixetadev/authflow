@@ -1,7 +1,9 @@
+import { ReactNode } from "react";
+
 import * as S from "./styles";
 
 type ButtonProps = {
-  children: string;
+  children: ReactNode;
   withColor?: boolean;
   type: "button" | "submit" | "reset" | undefined;
 };

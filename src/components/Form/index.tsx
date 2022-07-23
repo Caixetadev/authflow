@@ -15,6 +15,7 @@ import { BoxLogin } from "../BoxLogin";
 import { authLogin, reset } from "../../store/modules/auth/auth.store";
 import { toast, ToastContainer } from "react-toastify";
 import { IState } from "../../types";
+import { Loading } from "../Loading";
 
 export function Form() {
   const [username, setUsername] = useState("");
@@ -28,7 +29,9 @@ export function Form() {
     dispatch(authLogin({ username, password }));
   }
 
-  const { isError, message, user } = useSelector((state: IState) => state);
+  const { isError, message, user, isLoading } = useSelector(
+    (state: IState) => state
+  );
 
   useEffect(() => {
     if (isError) {
@@ -60,7 +63,7 @@ export function Form() {
         <S.ForgotPassword>Forgot password?</S.ForgotPassword>
         <BoxLogin />
         <Button withColor type="submit">
-          Sign in
+          {isLoading ? <Loading width="35" height="35" /> : "Sign in"}
         </Button>
         <Button type="button">Create account</Button>
       </S.Form>
