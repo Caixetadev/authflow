@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 
 import { signOut, useSession } from "next-auth/react";
 import { IState } from "../../types";
+import Image from "next/image";
 
 function Dashboard() {
   const { data } = useSession();
@@ -10,7 +11,9 @@ function Dashboard() {
 
   return (
     <>
-      <img
+      <Image
+        width={100}
+        height={100}
         src={(data?.user?.image as string) || user.user?.photo}
         alt="Image of Profile"
       />
