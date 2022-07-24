@@ -12,7 +12,7 @@ export function Input({
 }: {
   type: string;
   label: string;
-  Icon: any;
+  Icon?: any;
   alt: string;
   setStateAction: Dispatch<SetStateAction<string>>;
   setShowPassword?: Dispatch<SetStateAction<boolean>>;
@@ -24,11 +24,13 @@ export function Input({
         required
         onChange={(e) => setStateAction(e.target.value)}
       />
-      <S.Image
-        src={Icon.src}
-        alt={alt}
-        onClick={() => setShowPassword && setShowPassword((prev) => !prev)}
-      />
+      {Icon && (
+        <S.Image
+          src={Icon.src}
+          alt={alt}
+          onClick={() => setShowPassword && setShowPassword((prev) => !prev)}
+        />
+      )}
       <S.Label>{label}</S.Label>
     </S.Container>
   );

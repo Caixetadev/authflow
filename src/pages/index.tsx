@@ -1,15 +1,12 @@
 import type { NextPage } from "next";
 
-import { Form, Title, Header } from "../components";
-import { Footer } from "../components/Footer";
+import { Form, Title } from "../components";
 
 const Home: NextPage = () => {
   return (
     <>
-      <Header />
       <Title>Sign in</Title>
       <Form />
-      <Footer />
     </>
   );
 };

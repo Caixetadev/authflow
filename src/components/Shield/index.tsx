@@ -20,7 +20,7 @@ export function Shield({ children }: { children: ReactNode }) {
       isLoading={false}
       router={router}
       privateRoutes={["/dashboard"]}
-      publicRoutes={["/"]}
+      publicRoutes={["/", "/register"]}
       accessRoute="/dashboard"
       loginRoute="/"
       LoadingComponent={<p>Loading...</p>}
