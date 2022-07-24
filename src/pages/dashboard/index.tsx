@@ -11,7 +11,7 @@ function Dashboard() {
   return (
     <>
       <img
-        src={(data?.user?.image as string) || user.user.photo}
+        src={(data?.user?.image as string) || user.user?.photo}
         alt="Image of Profile"
       />
       <button onClick={() => signOut()}>Logout</button>

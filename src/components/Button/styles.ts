@@ -18,5 +18,10 @@ export const Button = styled.button<ButtonProps>`
     width: 100%;
     height: 4.5rem;
     cursor: pointer;
+
+    & a {
+      text-decoration: none;
+      color: #fff;
+    }
   `}
 `;

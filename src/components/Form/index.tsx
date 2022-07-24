@@ -13,9 +13,10 @@ import { Input } from "../Input";
 import { Button } from "../Button";
 import { BoxLogin } from "../BoxLogin";
 import { authLogin, reset } from "../../store/modules/auth/auth.store";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { IState } from "../../types";
 import { Loading } from "../Loading";
+import Link from "next/link";
 
 export function Form() {
   const [username, setUsername] = useState("");
@@ -43,18 +44,17 @@ export function Form() {
 
   return (
     <>
-      <ToastContainer theme="dark" />
       <S.Form onSubmit={handleSubmit}>
         <Input
           type="text"
-          label="Type your e-mail"
+          label="username"
           Icon={Mail}
           alt="Icon mail"
           setStateAction={setUsername}
         />
         <Input
           type={showPassword ? "text" : "password"}
-          label="Type your password"
+          label="password"
           Icon={showPassword ? AyeOn : AyeOff}
           alt="Icon eye"
           setStateAction={setPassword}
@@ -65,7 +65,9 @@ export function Form() {
         <Button withColor type="submit">
           {isLoading ? <Loading width="35" height="35" /> : "Sign in"}
         </Button>
-        <Button type="button">Create account</Button>
+        <Button type="button">
+          <Link href="/register">Create account</Link>
+        </Button>
       </S.Form>
     </>
   );

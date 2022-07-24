@@ -8,6 +8,6 @@ export const Header = styled.header`
     height: 6.5rem;
     width: 100%;
     border-bottom: 1px solid ${theme.colors.gray_border};
-    margin-bottom: 17.5rem;
+    margin-bottom: 10rem;
   `}
 `;
