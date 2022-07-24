@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { parseCookies } from "nookies";
 import { FormEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -11,7 +13,11 @@ import { Input, Title } from "../../components";
 import { Button } from "../../components/Button";
 import { Loading } from "../../components/Loading";
 import { AppDispatch } from "../../store";
-import { authRegister } from "../../store/modules/auth/auth.store";
+import {
+  authRegister,
+  authToken,
+  reset,
+} from "../../store/modules/auth/auth.store";
 import { IState } from "../../types";
 
 import * as S from "./styles";
@@ -26,6 +32,8 @@ function Register() {
     (state: IState) => state
   );
 
+  const router = useRouter();
+
   const dispatch: AppDispatch = useDispatch();
 
   function passwordIsEqual() {
@@ -39,6 +47,7 @@ function Register() {
 
     if (passwordIsEqual()) {
       dispatch(authRegister({ username, password }));
+      router.push("/");
     } else {
       toast.error("As senhas não são iguais");
     }
@@ -49,6 +58,16 @@ function Register() {
       toast.error(message);
     }
   }, [isError, message, dispatch]);
+
+  useEffect(() => {
+    const cookie = parseCookies();
+
+    if (cookie["token"]) {
+      dispatch(authToken());
+    } else {
+      dispatch(reset());
+    }
+  }, [dispatch]);
 
   return (
     <>

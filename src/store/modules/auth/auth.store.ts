@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import { IUser } from "../../../types";
 
-import { login, register } from "./authService";
+import { getUser, login, register } from "./authService";
 
 export const authLogin = createAsyncThunk(
   "login/fetchUser",
@@ -22,6 +22,17 @@ export const authRegister = createAsyncThunk(
       return await register(user);
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data.error);
+    }
+  }
+);
+
+export const authToken = createAsyncThunk(
+  "token/fetchUser",
+  async (_, thunkAPI) => {
+    try {
+      return await getUser();
+    } catch (error) {
+      thunkAPI.rejectWithValue("");
     }
   }
 );
@@ -76,6 +87,22 @@ const slice = createSlice({
       state.isSuccess = false;
       state.isError = true;
       state.message = action.payload as string;
+    });
+    builder.addCase(authToken.rejected, (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = false;
+      state.isError = true;
+      state.message = action.payload as string;
+    });
+    builder.addCase(authToken.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(authToken.fulfilled, (state, action) => {
+      state.isSuccess = true;
+      state.isLoading = false;
+      state.isError = false;
+      state.message = "";
+      state.user = action.payload;
     });
   },
 });
