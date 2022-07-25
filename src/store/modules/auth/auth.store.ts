@@ -21,7 +21,7 @@ export const authRegister = createAsyncThunk(
     try {
       return await register(user);
     } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.response.data.error);
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -45,6 +45,7 @@ const slice = createSlice({
     isError: false,
     message: "",
     user: null,
+    accountCreatedSuccessfully: false,
   },
   reducers: {
     reset(state) {
@@ -52,6 +53,7 @@ const slice = createSlice({
       state.isSuccess = false;
       state.isError = false;
       state.message = "";
+      state.accountCreatedSuccessfully = false;
     },
   },
   extraReducers(builder) {
@@ -73,11 +75,11 @@ const slice = createSlice({
     });
 
     builder.addCase(authRegister.fulfilled, (state, action) => {
-      state.isSuccess = true;
       state.isLoading = false;
       state.isError = false;
       state.message = "";
       state.user = action.payload;
+      state.accountCreatedSuccessfully = true;
     });
     builder.addCase(authRegister.pending, (state) => {
       state.isLoading = true;
@@ -87,6 +89,7 @@ const slice = createSlice({
       state.isSuccess = false;
       state.isError = true;
       state.message = action.payload as string;
+      state.accountCreatedSuccessfully = false;
     });
     builder.addCase(authToken.rejected, (state, action) => {
       state.isLoading = false;

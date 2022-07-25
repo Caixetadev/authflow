@@ -21,8 +21,6 @@ export const register = async ({ username, password }: IUser) => {
     password,
   });
 
-  setCookie(undefined, "token", data.user.token);
-
   return data;
 };
 

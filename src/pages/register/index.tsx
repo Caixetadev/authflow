@@ -28,9 +28,8 @@ function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const { isError, message, user, isLoading } = useSelector(
-    (state: IState) => state
-  );
+  const { isError, message, isLoading, accountCreatedSuccessfully } =
+    useSelector((state: IState) => state);
 
   const router = useRouter();
 
@@ -47,7 +46,6 @@ function Register() {
 
     if (passwordIsEqual()) {
       dispatch(authRegister({ username, password }));
-      router.push("/");
     } else {
       toast.error("As senhas não são iguais");
     }
@@ -57,7 +55,13 @@ function Register() {
     if (isError) {
       toast.error(message);
     }
-  }, [isError, message, dispatch]);
+
+    if (accountCreatedSuccessfully) {
+      router.push("/");
+    }
+
+    dispatch(reset());
+  }, [isError, message, dispatch, accountCreatedSuccessfully, router]);
 
   useEffect(() => {
     const cookie = parseCookies();

@@ -22,12 +22,12 @@ function Dashboard() {
 
   return (
     <>
-      <Image
+      {/* <Image
         width={100}
         height={100}
         src={(data?.user?.image as string) || user.user?.photo}
         alt="Image of Profile"
-      />
+      /> */}
       <button onClick={handleSignOut}>Logout</button>
     </>
   );

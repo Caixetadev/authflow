@@ -3,6 +3,7 @@ export interface IState {
   isLoading: boolean;
   isError: boolean;
   message: string;
+  accountCreatedSuccessfully: boolean;
   user: any;
 }
 
