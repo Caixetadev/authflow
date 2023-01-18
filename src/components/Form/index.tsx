@@ -17,6 +17,7 @@ import { toast } from "react-toastify";
 import { IState } from "../../types";
 import { Loading } from "../Loading";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
 
 export function Form() {
   const [username, setUsername] = useState("");
@@ -25,9 +26,14 @@ export function Form() {
 
   const dispatch: AppDispatch = useDispatch();
 
-  function handleSubmit(event: FormEvent) {
+  async function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    dispatch(authLogin({ username, password }));
+    await signIn("credentials", {
+      username,
+      password,
+      redirect: true,
+    });
+    // dispatch(authLogin({ username, password }));
   }
 
   const { isError, message, user, isLoading } = useSelector(
