@@ -10,7 +10,6 @@ import { store } from "../store";
 import { SessionProvider } from "next-auth/react";
 
 import "react-toastify/dist/ReactToastify.css";
-import { Shield } from "../components/Shield";
 import { Header } from "../components";
 import { Footer } from "../components/Footer";
 import { ToastContainer } from "react-toastify";
@@ -20,13 +19,11 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <SessionProvider session={session}>
-          <Shield>
-            <Header />
-            <ToastContainer theme="dark" />
-            <Component {...pageProps} />
-            <GlobalStyle />
-            <Footer />
-          </Shield>
+          <Header />
+          <ToastContainer theme="dark" />
+          <Component {...pageProps} />
+          <GlobalStyle />
+          <Footer />
         </SessionProvider>
       </ThemeProvider>
     </Provider>
